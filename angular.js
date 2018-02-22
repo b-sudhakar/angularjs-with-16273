@@ -22178,7 +22178,6 @@ function baseInputType(scope, element, attr, ctrl, $sniffer, $browser) {
         composing = false;
       }
 
-      console.log('composition ended');
     });
 
     element.on('compositionend', function() {
