@@ -22177,6 +22177,8 @@ function baseInputType(scope, element, attr, ctrl, $sniffer, $browser) {
       if (isUndefined(ev.data) || ev.data === '') {
         composing = false;
       }
+
+      console.log('composition ended');
     });
 
     element.on('compositionend', function() {
