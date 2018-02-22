@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @license AngularJS v1.4.13
  * (c) 2010-2015 Google, Inc. http://angularjs.org
  * License: MIT
@@ -16976,7 +16976,7 @@ function adjustMatchers(matchers) {
  *
  * - your app is hosted at url `http://myapp.example.com/`
  * - but some of your templates are hosted on other domains you control such as
- *   `http://srv01.assets.example.com/`,  `http://srv02.assets.example.com/`, etc.
+ *   `http://srv01.assets.example.com/`,  `http://srv02.assets.example.com/`, etc.
  * - and you have an open redirect at `http://myapp.example.com/clickThru?...`.
  *
  * Here is what a secure configuration for this scenario might look like:
@@ -22167,6 +22167,16 @@ function baseInputType(scope, element, attr, ctrl, $sniffer, $browser) {
 
     element.on('compositionstart', function(data) {
       composing = true;
+    });
+
+   // Support: IE9+
+    element.on('compositionupdate', function(ev) {
+      // End composition when ev.data is empty string on 'compositionupdate' event.
+      // When the input de-focusses (e.g. by clicking away), IE triggers 'compositionupdate'
+      // instead of 'compositionend'.
+      if (isUndefined(ev.data) || ev.data === '') {
+        composing = false;
+      }
     });
 
     element.on('compositionend', function() {
